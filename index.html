@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;1,400&family=Signika+Negative:wght@600&display=swap" rel="stylesheet">
+<style>
+    .convite {
+        font-family: 'Roboto', sans-serif;
+        font-family: 'Signika Negative', sans-serif;
+        color: #ffffff;
+        text-align: center;
+        max-width: 600px;
+        background: #ffffff46;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        border-radius: 30px;
+        padding: 30px
+    }
+    
+    .info_data_contagem {
+        background: #ffffff46;
+        border-radius: 15px;
+        padding: 15px;
+    }
+    
+    .flores>img {
+        width: 100%;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    }
+    
+    .setas>img {
+        max-width: 300px;
+        margin-top: -20px;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    }
+    
+    .descricao {
+        font-size: 16px;
+        font-weight: 300;
+    }
+    
+    .info_data {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin: 30px;
+    }
+    
+    body {
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(to right, midnightblue, firebrick, springgreen);
+        background-size: 500% 100%;
+        font-size: 20px;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Roboto', sans-serif;
+        animation-name: bacground;
+        animation-duration: 5s;
+        animation-timing-function: ease-in-out;
+        animation-direction: alternate;
+        animation-iteration-count: infinite;
+    }
+    
+    @keyframes bacground {
+        0% {
+            background-position-x: 0%;
+        }
+        100% {
+            background-position-x: 100%;
+        }
+    }
+</style>
+
+<body>
+    <div class="convite">
+        <div class="flores">
+            <img src="img/flores.png" alt="">
+        </div>
+
+        <h2>Você esta convidado para o casamento</h2>
+        <h1>Larisa vitoria & Vitor henrique</h1>
+        <div class="setas"><img src="img/setas.png" alt=""></div>
+
+        <div class="descricao">Isaías 41:20 <br> Para que todos vejam, e saibam, e considerem, e juntamente entendam que a mão do SENHOR fez isto, e o Santo de Israel o criou.</div>
+        <div class="info">
+            <div class="info_data">
+
+                <div class="info_data_contagem">
+                    <div id="clockdiv">
+                        Contagem Regreciva <br>
+                        <span class="days"></span> Dias <br><span class="hours"> </span> hrs <br> min: <span class="minutes"></span>:<span class="seconds"></span>s
+                    </div>
+                </div>
+                <div class="info_data_dia">Data: 15/06/2022</div>
+            </div>
+            <div class="info_endereco">
+
+                <b>Endereço:</b> <br> Goiânia/GO <br> Rua: Brasil n200<br> Residencial: Goias
+
+            </div>
+
+        </div>
+
+        <div class="flores">
+            <img src="img/flores.png" alt="">
+        </div>
+
+
+
+        <script>
+            function getTimeRemaining(endtime) {
+                var t = Date.parse(endtime) - Date.parse(new Date());
+                var seconds = Math.floor((t / 1000) % 60);
+                var minutes = Math.floor((t / 1000 / 60) % 60);
+                var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+                var days = Math.floor(t / (1000 * 60 * 60 * 24));
+                return {
+                    'total': t,
+                    'days': days,
+                    'hours': hours,
+                    'minutes': minutes,
+                    'seconds': seconds
+                };
+            }
+
+            function initializeClock(id, endtime) {
+                var clock = document.getElementById(id);
+                var daysSpan = clock.querySelector('.days');
+                var hoursSpan = clock.querySelector('.hours');
+                var minutesSpan = clock.querySelector('.minutes');
+                var secondsSpan = clock.querySelector('.seconds');
+
+                function updateClock() {
+                    var t = getTimeRemaining(endtime);
+
+                    daysSpan.innerHTML = t.days;
+                    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+                    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+                    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+                    if (t.total <= 0) {
+                        clearInterval(timeinterval);
+                    }
+                }
+
+                updateClock();
+                var timeinterval = setInterval(updateClock, 1000);
+            }
+
+            var deadline = 'June 15 2022 14:30:00 GMT-3';
+            initializeClock('clockdiv', deadline);
+        </script>
+</body>
+
+</html>
