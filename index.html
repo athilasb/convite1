@@ -143,14 +143,15 @@
 
                 function updateClock() {
                     var t = getTimeRemaining(endtime);
+                    if (t.seconds < "0") {
 
-                    daysSpan.innerHTML = t.days;
-                    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-                    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-                    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+                        document.querySelector("#clockdiv").innerText = "Chegou a hora!!!"
 
-                    if (t.total <= 0) {
-                        clearInterval(timeinterval);
+                    } else {
+                        daysSpan.innerHTML = t.days;
+                        hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+                        minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+                        secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
                     }
                 }
 
